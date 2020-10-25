@@ -16,11 +16,19 @@ $view = new View();
 
 if($action === 'create') {
   $page = 'create';
-  $viewParams['created'] = 'New element created.';
-} else {
-  $page = 'list';
-  $viewParams['elements'] = 'List of elements.';
-}
 
+  if(!empty($_POST)) {
+    $viewParams = [
+      'title' => $_POST['title'],
+      'content' => $_POST['content'],
+    ];
+  }
+
+}
+else {
+  $page = 'list';
+  
+  $viewParams['elements'] = 'list of elements';
+}
 
 $view->render($page, $viewParams);
