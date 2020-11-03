@@ -14,21 +14,27 @@ $action = $_GET['action'] ?? DEFAULT_ACTION;
 $viewParams = [];
 $view = new View();
 
-if($action === 'create') {
-  $page = 'create';
+switch($action) {
 
-  if(!empty($_POST)) {
-    $viewParams = [
-      'title' => $_POST['title'],
-      'content' => $_POST['content'],
-    ];
-  }
+  case 'create':
+    $page = 'create';
+    $created = false;
 
-}
-else {
-  $page = 'list';
+    if(!empty($_POST)) {
+      $created = true;
+      $viewParams = [
+        'title' => $_POST['title'],
+        'content' => $_POST['content'],
+      ];
+    }
+    $viewParams['created'] = $created;
+  break;
+
+  default:
+    $page = 'list';
+    $viewParams['elements'] = 'list of elements';
   
-  $viewParams['elements'] = 'list of elements';
 }
 
 $view->render($page, $viewParams);
+

@@ -1,3 +1,5 @@
+<?php if(!$params['created']) : ?>
+
 <h3>add a new note</h3>
 
 <form class="add-note" action="?action=create" method="post">
@@ -16,5 +18,16 @@
   </ul>  
 </form>
 
-<?php
-dump($params);
+<?php else : ?>
+
+<h3>you have added a new note</h3>
+<p>
+  <b>title:</b>
+  <?php echo $params['title'] ?>
+</p>
+<p>
+  <b>content:</b>
+  <?php echo $params['content'] ?>
+</p>
+
+<?php endif; ?>

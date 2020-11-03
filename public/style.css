@@ -87,3 +87,7 @@ form.add-note input.send {
   background-color: #494366;
   color: aliceblue;
 }
+
+h3 {
+  margin: 10px 0;
+}
