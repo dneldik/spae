@@ -5,17 +5,28 @@ declare(strict_types=1);
 namespace App;
 
 require_once("View.php");
+require_once("Database.php");
 
 class Controller
 {
   private const DEFAULT_ACTION = 'list';
+
+  private static array $configuration = [];
+
   private array $request;
   private View $view;
+  private Database $database;
+
+  public static function initConfiguration(array $configuration): void
+  {
+    self::$configuration = $configuration;
+  }
 
   public function __construct(array $request)
   {
     $this->request = $request;
     $this->view = new View();
+    $this->database = new Database(self::$configuration['db']);
   }
 
   public function run(): void
